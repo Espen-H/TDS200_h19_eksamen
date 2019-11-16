@@ -1,18 +1,16 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <ion-item>
-    <ion-input placeholder="username" [(ngModel)]="user.username"></ion-input>
-    <ion-input placeholder="password" [(ngModel)]="user.password" type="password"></ion-input>
-    <ion-button (click)="loginUser()">
-      Login
-    </ion-button>
-    <ion-button (click)="registerUser()">
-      Sign up
-    </ion-button>
-  </ion-item>
-</ion-content>
+    <div id="login-form">
+      <ion-card class="login-field">
+        <ion-card-content>
+          <ion-input placeholder="username" [(ngModel)]="user.username"></ion-input>
+        </ion-card-content>
+      </ion-card>
+      <ion-card class="login-field">
+        <ion-card-content>
+          <ion-input placeholder="password" [(ngModel)]="user.password" type="password"></ion-input>
+        </ion-card-content>
+      </ion-card>
+      <ion-button (click)="loginUser()">Login</ion-button>
+      <ion-button (click)="registerUser()">Sign up</ion-button>
+    </div>
+  </ion-content>

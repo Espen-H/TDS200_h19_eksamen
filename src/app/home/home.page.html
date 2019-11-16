@@ -1,14 +1,23 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      Hello $user
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button id="logout-button">Log Out</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+  <div>
+    <ion-button [routerLink]="['/meeting-rooms-rent-list']">Rent a room</ion-button>
+  </div>
+  <div>
+    <ion-button>Rent out your room</ion-button>
+  </div>
+  <div>
+    <ion-button>Your rooms</ion-button>
   </div>
 </ion-content>

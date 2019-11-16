@@ -1,3 +1,14 @@
-<p>
-  meeting-room-item works!
-</p>
+<ion-card>
+    <img class="card-thumbnail" [src]="meetingRoomData.bilde" />
+    <ion-card-header>
+      <ion-card-subtitle>
+        {{meetingRoomData.tittel}}
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-text>
+        Kapasitet: {{meetingRoomData.kapasitet}}
+      </ion-text>
+    </ion-card-content>
+  
+  </ion-card>
