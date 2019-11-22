@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{room?.title}}</ion-title>
+    <ion-title>{{room?.tittel}}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button text="" color="medium" defaultHref="/"></ion-back-button>
     </ion-buttons>
@@ -12,13 +12,15 @@
     <ion-card-content>
       <img [src]="room.bilde" />
       <ion-text>
-        <h1>Adresse: {{post?.adresse}}</h1>
-        <h1>Kapasitet: {{post?.kapasitet}}</h1>
-        // ledig/ikke ledig
+        <h1>Adresse: {{room?.adresse}}</h1>
+        <h1>Kapasitet: {{room?.kapasitet}}</h1>
+        <div *ngIf="room.ledig; else ikkeLedig">
+          <ion-button>Ledig</ion-button>
+        </div>
+        <ng-template #ikkeLedig>
+          <h1>Ikke ledig</h1>
+        </ng-template>
       </ion-text>
     </ion-card-content>
   </ion-card>
 </ion-content>
-
-
-

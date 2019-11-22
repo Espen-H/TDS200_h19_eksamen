@@ -17,8 +17,12 @@ const routes: Routes = [
   {
     path: 'login', loadChildren: './login/login.module#LoginPageModule',
     ...canActivate(redirectLoggedInTo(['home']))
-  },  { path: 'detail-view', loadChildren: './detail-view/detail-view.module#DetailViewPageModule' },
-  { path: 'meeting-rooms-rent-list', loadChildren: './meeting-rooms-rent-list/meeting-rooms-rent-list.module#MeetingRoomsRentListPageModule' },
+  },
+  { path: 'detail-view', loadChildren: './detail-view/detail-view.module#DetailViewPageModule',
+  ...canActivate(redirectUnauthorizedTo(['login'])) },
+  { path: 'meeting-rooms-rent-list', loadChildren: './meeting-rooms-rent-list/meeting-rooms-rent-list.module#MeetingRoomsRentListPageModule',
+  ...canActivate(redirectUnauthorizedTo(['login'])) },  { path: 'new-room', loadChildren: './new-room/new-room.module#NewRoomPageModule' },
+
 
 
 ];

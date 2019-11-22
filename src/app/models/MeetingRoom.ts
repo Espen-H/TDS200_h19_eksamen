@@ -1,9 +1,14 @@
+import { firestore } from 'firebase';
+
+
 export default interface MeetingRoom {
     id?: string;
     title: string;
-    bilder: string;
+    bilde: string;
     adresse: string;
+    lokasjon: firestore.GeoPoint;
     kapasitet: number;
     ledig: boolean;
+
 
 }
