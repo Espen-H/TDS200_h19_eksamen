@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Camera,  CameraOptions } from '@ionic-native/camera/ngx';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AngularFirestore } from '@angular/fire/firestore';
 import meetingRoom from '../models/MeetingRoom';
@@ -25,10 +25,11 @@ export class NewRoomPage implements OnInit {
   private latitude;
   private longtitude;
   private address;
-  private title:string;
-  private capacity:number;
+  private title: string;
+  private capacity: number;
 
   constructor(
+
     private camera: Camera,
     private geolocation: Geolocation,
     private firestorage: AngularFireStorage,
@@ -50,7 +51,7 @@ export class NewRoomPage implements OnInit {
         destinationType: this.camera.DestinationType.DATA_URL,
         encodingType: this.camera.EncodingType.JPEG,
         mediaType: this.camera.MediaType.PICTURE,
-       };
+      };
       const image = await this.camera.getPicture(cameraOptions);
       this.cameraPreview = image;
     } catch (e) {
@@ -65,10 +66,9 @@ export class NewRoomPage implements OnInit {
         this.longtitude = resp.coords.longitude;
       }
       );
-      // tslint:disable-next-line: max-line-length
-      const url = 'https://nominatim.openstreetmap.org/reverse?format=json&lat=' + this.latitude + '&lon=' + this.longtitude + '&zoom=18&addressdetails=1';
+      const url = 'https://nominatim.openstreetmap.org/reverse?format=json&lat=' +
+        this.latitude + '&lon=' + this.longtitude + '&zoom=18&addressdetails=1';
       this.getAddressFromGps(url);
-
 
     } catch (e) {
       console.log('Error getting location ' + e);
@@ -78,7 +78,6 @@ export class NewRoomPage implements OnInit {
 
   async getAddressFromGps(url: string) {
     try {
-      // tslint:disable-next-line: max-line-length
       const response = await fetch(url);
       const data = await response.json();
       this.address = data.display_name;
@@ -102,24 +101,29 @@ export class NewRoomPage implements OnInit {
   async postDataToFirebase() {
 
     try {
-       const uploadedImageUrl = await this.uploadImageToFirebase();
-    const roomCollectionref = this.firestore.collection<MeetingRoom>('rooms');
-    const location = new firestore.GeoPoint(this.latitude,this.longtitude)
+      const uploadedImageUrl = await this.uploadImageToFirebase();
+      const roomCollectionref = this.firestore.collection<MeetingRoom>('rooms');
+      const location = new firestore.GeoPoint(this.latitude, this.longtitude);
+      const owner = this.firebaseAuth.auth.currentUser.uid;
+      const randomId = owner+uuid()
 
-    await roomCollectionref.add({
-      title: this.title,
-      bilde: uploadedImageUrl,
-      adresse: this.address,
-      lokasjon: location,
-      kapasitet: this.capacity,
-      ledig: true
-    });
-    this.presentToast("Room published");
+      await roomCollectionref.doc(randomId).set({
+        id: randomId,
+        title: this.title,
+        bilde: uploadedImageUrl,
+        adresse: this.address,
+        lokasjon: location,
+        kapasitet: this.capacity,
+        eier: owner,
+        ledig: true,
+        leietaker: ''
+      });
+      this.presentToast("Room published");
     } catch (error) {
       this.presentToast("Something went wrong");
 
     }
-   
+
 
   }
 
