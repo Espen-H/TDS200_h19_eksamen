@@ -10,12 +10,15 @@
 <ion-content>
   <ion-card>
     <ion-card-content>
-      <img [src]="room.bilde" />
+      <img [src]="room.bilde" style="max-height: 60vh" />
+      <ion-card-title>
+          {{room?.tittel}}
+        </ion-card-title>
       <ion-text>
         <h1>Adresse: {{room?.adresse}}</h1>
         <h1>Kapasitet: {{room?.kapasitet}}</h1>
         <div *ngIf="room.ledig; else ikkeLedig">
-          <ion-button>Ledig</ion-button>
+          <ion-button (click)="reserverRom()">Reserver</ion-button>
         </div>
         <ng-template #ikkeLedig>
           <h1>Ikke ledig</h1>

@@ -5,7 +5,7 @@
     </ion-title>
 
     <ion-buttons slot="end">
-      <ion-button id="logout-button">Log Out</ion-button>
+      <ion-button id="logout-button" (click)="logout()">Log Out</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -18,6 +18,8 @@
     <ion-button [routerLink]="['/new-room']">Rent out your room</ion-button>
   </div>
   <div>
+    <ion-button>Your reservations</ion-button>
+  </div>  <div>
     <ion-button>Your rooms</ion-button>
   </div>
 </ion-content>

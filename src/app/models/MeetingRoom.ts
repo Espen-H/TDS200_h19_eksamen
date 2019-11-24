@@ -9,6 +9,6 @@ export default interface MeetingRoom {
     lokasjon: firestore.GeoPoint;
     kapasitet: number;
     ledig: boolean;
-
-
+    eier: string;
+    leietaker: string;
 }

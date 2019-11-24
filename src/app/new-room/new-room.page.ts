@@ -9,6 +9,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { first } from 'rxjs/operators';
 import MeetingRoom from '../models/MeetingRoom';
 import { firestore } from 'firebase';
+import { ToastController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-new-room',
@@ -31,7 +33,8 @@ export class NewRoomPage implements OnInit {
     private geolocation: Geolocation,
     private firestorage: AngularFireStorage,
     private firestore: AngularFirestore,
-    private firebaseAuth: AngularFireAuth) {
+    private firebaseAuth: AngularFireAuth,
+    public toastController: ToastController) {
   }
 
   ngOnInit() {
@@ -97,7 +100,9 @@ export class NewRoomPage implements OnInit {
 
 
   async postDataToFirebase() {
-    const uploadedImageUrl = await this.uploadImageToFirebase();
+
+    try {
+       const uploadedImageUrl = await this.uploadImageToFirebase();
     const roomCollectionref = this.firestore.collection<MeetingRoom>('rooms');
     const location = new firestore.GeoPoint(this.latitude,this.longtitude)
 
@@ -109,6 +114,21 @@ export class NewRoomPage implements OnInit {
       kapasitet: this.capacity,
       ledig: true
     });
+    this.presentToast("Room published");
+    } catch (error) {
+      this.presentToast("Something went wrong");
+
+    }
+   
+
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
   }
 
 }

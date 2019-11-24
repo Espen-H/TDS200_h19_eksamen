@@ -15,9 +15,9 @@ export class LoginPage implements OnInit {
   constructor(private fireAuth: AngularFireAuth, private router: Router, public toastController: ToastController) {
    }
 
-   async presentToast() {
+   async presentToast(message: string) {
     const toast = await this.toastController.create({
-      message: 'Your account have been registered.',
+      message: message,
       duration: 2000
     });
     toast.present();
@@ -26,6 +26,7 @@ export class LoginPage implements OnInit {
   async loginUser() {
     try {
       const result = await this.fireAuth.auth.signInWithEmailAndPassword(this.user.username, this.user.password);
+      this.presentToast("Welcome back "+this.user.username)
       this.router.navigate(['home']);
     } catch (e) {
       console.warn(e);
@@ -35,7 +36,7 @@ export class LoginPage implements OnInit {
   async registerUser() {
     try {
       const result = await this.fireAuth.auth.createUserWithEmailAndPassword(this.user.username, this.user.password);
-      this.presentToast();
+      this.presentToast("Your account have been registered.");
       this.router.navigate(['home']);
     } catch (e) {
       console.warn(e);
