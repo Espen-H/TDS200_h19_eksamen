@@ -33,6 +33,7 @@ export class NewRoomPage implements OnInit {
     private camera: Camera,
     private geolocation: Geolocation,
     private firestorage: AngularFireStorage,
+    // tslint:disable-next-line: no-shadowed-variable
     private firestore: AngularFirestore,
     private firebaseAuth: AngularFireAuth,
     public toastController: ToastController) {
@@ -105,7 +106,7 @@ export class NewRoomPage implements OnInit {
       const roomCollectionref = this.firestore.collection<MeetingRoom>('rooms');
       const location = new firestore.GeoPoint(this.latitude, this.longtitude);
       const owner = this.firebaseAuth.auth.currentUser.uid;
-      const randomId = owner+uuid()
+      const randomId = owner + uuid();
 
       await roomCollectionref.doc(randomId).set({
         id: randomId,
@@ -118,18 +119,18 @@ export class NewRoomPage implements OnInit {
         ledig: true,
         leietaker: ''
       });
-      this.presentToast("Room published");
+      this.presentToast('Room published');
     } catch (error) {
-      this.presentToast("Something went wrong");
+      this.presentToast('Something went wrong');
 
     }
 
 
   }
 
-  async presentToast(message: string) {
+  async presentToast(inputString: string) {
     const toast = await this.toastController.create({
-      message: message,
+      message: inputString,
       duration: 2000
     });
     toast.present();

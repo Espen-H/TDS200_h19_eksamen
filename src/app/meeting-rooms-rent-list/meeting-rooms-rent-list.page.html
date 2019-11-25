@@ -9,9 +9,28 @@
 
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let room of rooms$ | async" lines="none" (click)="openDetailsWithState(room)">
-      <app-meeting-room-item [meetingRoomData]="room"></app-meeting-room-item>
-    </ion-item>
-  </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="1"></ion-col>
+      <ion-col size="10">
+        <ion-list>
+          <ion-label>Available rooms</ion-label>
+          <ion-item *ngFor="let room of rooms$ | async" lines="none" (click)="openDetailsWithState(room)">
+            <div *ngIf="room.ledig">
+              <app-meeting-room-item [meetingRoomData]="room"></app-meeting-room-item>
+            </div>
+          </ion-item>
+        </ion-list>
+        <ion-label>Booked</ion-label>
+        <ion-list>
+          <ion-item *ngFor="let room of rooms$ | async" lines="none" (click)="openDetailsWithState(room)">
+            <div *ngIf="room.ledig == false">
+              <app-meeting-room-item [meetingRoomData]="room"></app-meeting-room-item>
+            </div>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+      </ion-row>
+  </ion-grid>
 </ion-content>

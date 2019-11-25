@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Hello $user
+      Hello {{user}}
     </ion-title>
 
     <ion-buttons slot="end">
@@ -11,15 +11,24 @@
 </ion-header>
 
 <ion-content>
-  <div>
-    <ion-button [routerLink]="['/meeting-rooms-rent-list']">Rent a room</ion-button>
-  </div>
-  <div>
-    <ion-button [routerLink]="['/new-room']">Rent out your room</ion-button>
-  </div>
-  <div>
-    <ion-button>Your reservations</ion-button>
-  </div>  <div>
-    <ion-button>Your rooms</ion-button>
-  </div>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="2"></ion-col>
+      <ion-col size="8" class="ion-justify-content-center">
+        <div>
+          <ion-button expand="block" [routerLink]="['/meeting-rooms-rent-list']">Rent a room</ion-button>
+        </div>
+        <div>
+          <ion-button  expand="block" [routerLink]="['/new-room']">Rent out your room</ion-button>
+        </div>
+        <div>
+          <ion-button expand="block">Your reservations</ion-button>
+        </div>
+        <div>
+          <ion-button expand="block">Your rooms</ion-button>
+        </div>
+      </ion-col>
+      <ion-col size="2"></ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

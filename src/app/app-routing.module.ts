@@ -12,16 +12,22 @@ const routes: Routes = [
   {
     path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
     ...canActivate(redirectUnauthorizedTo(['login']))
-
   },
   {
     path: 'login', loadChildren: './login/login.module#LoginPageModule',
     ...canActivate(redirectLoggedInTo(['home']))
   },
-  { path: 'detail-view', loadChildren: './detail-view/detail-view.module#DetailViewPageModule',
+  {
+    path: 'detail-view', loadChildren: './detail-view/detail-view.module#DetailViewPageModule',
+    ...canActivate(redirectUnauthorizedTo(['login']))
+  },
+  {
+    // tslint:disable-next-line: max-line-length
+    path: 'meeting-rooms-rent-list', loadChildren: './meeting-rooms-rent-list/meeting-rooms-rent-list.module#MeetingRoomsRentListPageModule',
+    ...canActivate(redirectUnauthorizedTo(['login']))
+  },
+  { path: 'new-room', loadChildren: './new-room/new-room.module#NewRoomPageModule',
   ...canActivate(redirectUnauthorizedTo(['login'])) },
-  { path: 'meeting-rooms-rent-list', loadChildren: './meeting-rooms-rent-list/meeting-rooms-rent-list.module#MeetingRoomsRentListPageModule',
-  ...canActivate(redirectUnauthorizedTo(['login'])) },  { path: 'new-room', loadChildren: './new-room/new-room.module#NewRoomPageModule' },
 
 
 

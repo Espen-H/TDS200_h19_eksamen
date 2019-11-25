@@ -15,9 +15,9 @@ export class DetailViewPage implements OnInit {
   private room: MeetingRoom;
 
   constructor(
-    private firestore: AngularFirestore, 
-    private route: ActivatedRoute, 
-    private router: Router, 
+    private firestore: AngularFirestore,
+    private route: ActivatedRoute,
+    private router: Router,
     private dataService: DataService,
     private firebaseAuth: AngularFireAuth,
     ) {
@@ -31,8 +31,8 @@ export class DetailViewPage implements OnInit {
 
   reserverRom() {
    const dbList = this.firestore.collection<MeetingRoom>('rooms');
-   const dbItem = dbList.doc(this.room.id)
-   const user = this.firebaseAuth.auth.currentUser.uid
+   const dbItem = dbList.doc(this.room.id);
+   const user = this.firebaseAuth.auth.currentUser.uid;
    dbItem.update({ledig: false , leietaker: user});
   }
 

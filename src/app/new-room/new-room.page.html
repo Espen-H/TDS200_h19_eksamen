@@ -9,29 +9,27 @@
 
 <ion-content>
   <div id="cardPreview">
-    <ion-text>
-      <ion-label>Preview</ion-label>
-    </ion-text>
+    <ion-label>Preview</ion-label>
     <ion-card>
       <img *ngIf="cameraPreview" src="{{'data:image/jpeg;base64,' + cameraPreview}}" style="max-height: 50vh">
       <ion-card-content>
-      <ion-card-title>Title: {{title}}</ion-card-title>
-      <p>Latitude: {{latitude}}</p>
-      <p>Longtitude: {{longtitude}}</p>
-      <p>Address: {{address}}</p>
-      <p>Capacity: {{capacity}}</p>
+        <ion-card-title>Title: {{title}}</ion-card-title>
+        <p>Latitude: {{latitude}}</p>
+        <p>Longtitude: {{longtitude}}</p>
+        <p>Address: {{address}}</p>
+        <p>Capacity: {{capacity}}</p>
       </ion-card-content>
     </ion-card>
   </div>
   <div id="inputFields">
-      <ion-item>
-          <ion-label>Title</ion-label>
-          <ion-input placeholder="tittel?" [(ngModel)]="title"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label>Capacity</ion-label>
-            <ion-input type="number" [(ngModel)]="capacity"></ion-input>
-          </ion-item>
+    <ion-item>
+      <ion-label>Title</ion-label>
+      <ion-input placeholder="tittel?" [(ngModel)]="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Capacity</ion-label>
+      <ion-input type="number" [(ngModel)]="capacity"></ion-input>
+    </ion-item>
 
   </div>
 
