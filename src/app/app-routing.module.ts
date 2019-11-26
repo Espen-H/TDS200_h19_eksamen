@@ -26,8 +26,20 @@ const routes: Routes = [
     path: 'meeting-rooms-rent-list', loadChildren: './meeting-rooms-rent-list/meeting-rooms-rent-list.module#MeetingRoomsRentListPageModule',
     ...canActivate(redirectUnauthorizedTo(['login']))
   },
-  { path: 'new-room', loadChildren: './new-room/new-room.module#NewRoomPageModule',
-  ...canActivate(redirectUnauthorizedTo(['login'])) },
+  {
+    path: 'new-room', loadChildren: './new-room/new-room.module#NewRoomPageModule',
+    ...canActivate(redirectUnauthorizedTo(['login']))
+  },
+  {
+    path: 'user-rooms', loadChildren: './user-rooms/user-rooms.module#UserRoomsPageModule',
+    ...canActivate(redirectUnauthorizedTo(['login']))
+  },
+  {
+    path: 'user-reservations', loadChildren: './user-reservations/user-reservations.module#UserReservationsPageModule',
+    ...canActivate(redirectUnauthorizedTo(['login']))
+  },
+
+
 
 
 
